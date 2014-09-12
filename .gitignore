@@ -1,0 +1,5 @@
+.ant_targets
+classes/
+lib/application/
+lib/test/
+test-classes/

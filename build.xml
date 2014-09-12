@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<project name="compilers" xmlns:antelope="antlib:ise.antelope.tasks"  xmlns:ivy="antlib:org.apache.ivy.ant">
+	<property name="project.dir" value="." />
+	<property environment="env" />
+
+	<!-- configuration file -->
+
+	<property file="${project.dir}/build.properties" />
+
+	<path id="application.classpath">
+		<fileset dir="${project.dir}/lib/application" includes="*.jar" />
+		<pathelement path="${project.dir}/classes" />
+	</path>
+	<path id="development.classpath">
+		<fileset dir="${project.dir}/lib/development" includes="*.jar" />
+	</path>
+
+	<path id="test.classpath">
+		<fileset dir="${project.dir}/lib/test" includes="*.jar" />
+		<pathelement path="${project.dir}/test-classes" />
+	</path>
+
+	<taskdef classpathref="development.classpath" resource="net/sf/antcontrib/antlib.xml" />
+	<taskdef classpathref="development.classpath" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
+
+	<target name="clean">
+		<delete dir="${project.dir}/classes" />
+		<delete dir="${project.dir}/test-classes" />
+	</target>
+
+	<target name="compile" depends="compile-application, compile-test" />
+
+	<target name="compile-application" depends="clean">
+		<mkdir dir="${project.dir}/classes" />
+
+		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="application" />
+
+		<javac
+			classpathref="application.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="${project.dir}/classes"
+			includeAntRuntime="false"
+			nowarn="${javac.nowarn}"
+			srcdir="${project.dir}/src"
+		/>
+	</target>
+
+	<target name="compile-test" depends="compile-application">
+		<mkdir dir="${project.dir}/test-classes" />
+
+		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="test" />
+
+		<javac
+			classpathref="test.classpath"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="${project.dir}/test-classes"
+			includeAntRuntime="false"
+			nowarn="${javac.nowarn}"
+			srcdir="${project.dir}/test"
+		/>
+	</target>
+
+	<target name="test" depends="compile-test">
+		<junit fork="true" printsummary="yes" haltonfailure="yes">
+			<classpath>
+				<path refid="test.classpath" />
+				<pathelement location="${project.dir}/test-classes" />
+			</classpath>
+
+			<batchtest>
+				<formatter type="plain" usefile="false" />
+
+				<fileset dir="${project.dir}/test-classes">
+					<include name="**/*Test.class" />
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+</project>

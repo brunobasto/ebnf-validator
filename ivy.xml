@@ -1,0 +1,15 @@
+<ivy-module version="2.0" xmlns:e="http://ant.apache.org/ivy/extra">
+	<info e:libType="application" module="application" organisation="org.brunobasto" />
+
+	<configurations>
+        <conf name="application" description="Add jars lib/application"/>
+        <conf name="test" description="Add jars lib/test"/>
+    </configurations>
+
+	<dependencies>
+		<dependency conf="application->master" org="org.antlr" name="antlr4" rev="4.3" />
+		<dependency conf="application->master" org="org.apache.tomcat.embed" name="tomcat-embed-core" rev="7.0.42" />
+
+		<dependency conf="test->master" org="junit" name="junit" rev="4.11"/>
+	</dependencies>
+</ivy-module>

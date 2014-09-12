@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="classes/|docroot/|lib/application/|lib/development/|lib/test/|lib/|src/|test/|src/|test/" kind="src" path=""/>
 	<classpathentry kind="src" output="classes" path="src"/>
 	<classpathentry kind="src" output="test-classes" path="test"/>
 	<classpathentry kind="lib" path="lib/application/antlr4-4.3.jar"/>
 	<classpathentry kind="lib" path="lib/application/tomcat-embed-core-7.0.42.jar"/>
 	<classpathentry kind="lib" path="lib/test/junit-4.11.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

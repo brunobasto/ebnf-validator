@@ -14,7 +14,7 @@ public class Launcher {
 		String webappDirLocation = "docroot/";
 
 		Tomcat tomcat = new Tomcat();
-		tomcat.setPort(1234);
+		tomcat.setPort(80);
 		tomcat.setBaseDir(new File("tomcat").getAbsolutePath());
 
 		String path = new File(webappDirLocation).getAbsolutePath();
@@ -30,14 +30,14 @@ public class Launcher {
 
 			ctx.setResources(resources);
 
-//			tomcat.start();
+			tomcat.start();
 		}
 		catch (ServletException se) {
 			se.printStackTrace();
 		}
-//		catch (LifecycleException le) {
-//			le.printStackTrace();
-//		}
+		catch (LifecycleException le) {
+			le.printStackTrace();
+		}
 
 		tomcat.getServer().await();
 	}

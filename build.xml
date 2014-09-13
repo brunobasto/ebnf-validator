@@ -88,12 +88,12 @@
 
 	<target name="run" depends="compile">
 		<java
-			classpathref="project.classpath"
-			failonerror="true"
-			fork="true"
 			classname="com.brunobasto.ebnf.server.Launcher"
-			maxmemory="256m"
-			newenvironment="true"
+			classpathref="project.classpath"
+			failonerror="false"
+			fork="true"
+			maxmemory="512m"
+			newenvironment="false"
 		>
 			<arg value="-o" />
 			<arg value="${project.dir}/_antlr" />

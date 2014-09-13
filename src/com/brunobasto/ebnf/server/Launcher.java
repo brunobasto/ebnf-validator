@@ -30,14 +30,14 @@ public class Launcher {
 
 			ctx.setResources(resources);
 
-			tomcat.start();
+//			tomcat.start();
 		}
 		catch (ServletException se) {
 			se.printStackTrace();
 		}
-		catch (LifecycleException le) {
-			le.printStackTrace();
-		}
+//		catch (LifecycleException le) {
+//			le.printStackTrace();
+//		}
 
 		tomcat.getServer().await();
 	}

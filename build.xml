@@ -34,8 +34,6 @@
 	<taskdef classpathref="development.classpath" resource="net/sf/antcontrib/antlib.xml" />
 	<taskdef classpathref="development.classpath" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
-	<ivy:resolve file="${project.dir}/ivy.xml" />
-
 	<target name="clean">
 		<delete dir="${project.dir}/classes" />
 		<delete dir="${project.dir}/lib/application" />
@@ -44,14 +42,21 @@
 		<delete dir="${project.dir}/test-classes" />
 	</target>
 
-	<target name="install" />
-
-	<target name="compile" depends="compile-application, compile-test" />
-
-	<target name="compile-application" depends="clean">
+	<target name="install">
 		<mkdir dir="${project.dir}/classes" />
+		<mkdir dir="${project.dir}/lib/application" />
+		<mkdir dir="${project.dir}/lib/server" />
+		<mkdir dir="${project.dir}/lib/test" />
+		<mkdir dir="${project.dir}/test-classes" />
 
-		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="application, server" />
+		<ivy:resolve />
+		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="application, server, test" />
+	</target>
+
+	<target name="compile" depends="install, compile-application, compile-test" />
+
+	<target name="compile-application">
+		<mkdir dir="${project.dir}/classes" />
 
 		<javac
 			classpathref="project.classpath"
@@ -68,8 +73,6 @@
 	<target name="compile-test" depends="compile-application">
 		<mkdir dir="${project.dir}/test-classes" />
 
-		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="test" />
-
 		<javac
 			classpathref="test.classpath"
 			compiler="${javac.compiler}"
@@ -82,7 +85,7 @@
 		/>
 	</target>
 
-	<target name="run">
+	<target name="run" depends="compile">
 		<java
 			classpathref="project.classpath"
 			failonerror="true"

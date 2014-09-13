@@ -28,6 +28,7 @@
 	<path id="project.classpath">
 		<fileset dir="${project.dir}/lib/application" includes="*.jar" />
 		<fileset dir="${project.dir}/lib/server" includes="*.jar" />
+		<pathelement path="${project.dir}/classes" />
 	</path>
 
 	<taskdef classpathref="development.classpath" resource="net/sf/antcontrib/antlib.xml" />
@@ -77,6 +78,21 @@
 			nowarn="${javac.nowarn}"
 			srcdir="${project.dir}/test"
 		/>
+	</target>
+
+	<target name="run">
+		<java
+			classpathref="project.classpath"
+			failonerror="true"
+			fork="true"
+			classname="com.brunobasto.ebnf.server.Launcher"
+			maxmemory="256m"
+			newenvironment="true"
+		>
+			<arg value="-o" />
+			<arg value="${project.dir}/_antlr" />
+			<arg value="${project.dir}/${grammar.file}" />
+		</java>
 	</target>
 
 	<target name="test" depends="compile-test">

@@ -44,6 +44,8 @@
 		<delete dir="${project.dir}/test-classes" />
 	</target>
 
+	<target name="install" />
+
 	<target name="compile" depends="compile-application, compile-test" />
 
 	<target name="compile-application" depends="clean">

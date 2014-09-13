@@ -15,18 +15,18 @@ public class Launcher {
 
 		Tomcat tomcat = new Tomcat();
 		tomcat.setPort(8080);
+		tomcat.setBaseDir(new File("tomcat").getAbsolutePath());
 
 		String path = new File(webappDirLocation).getAbsolutePath();
 
 		try {
 			StandardContext ctx = (StandardContext)tomcat.addWebapp("/", path);
 
-			File webInfClasses = new File("classes");
-
 			VirtualDirContext resources = new VirtualDirContext();
 
 			resources.setExtraResourcePaths(
-				"/WEB-INF/classes=" + webInfClasses);
+				"/WEB-INF/classes=" + new File("classes")
+			);
 
 			ctx.setResources(resources);
 
@@ -38,8 +38,6 @@ public class Launcher {
 		catch (LifecycleException le) {
 			le.printStackTrace();
 		}
-
-		System.out.println("configuring app with basedir: " + path);
 
 		tomcat.getServer().await();
 	}

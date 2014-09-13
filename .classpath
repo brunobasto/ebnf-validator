@@ -2,11 +2,15 @@
 <classpath>
 	<classpathentry kind="src" output="classes" path="src"/>
 	<classpathentry kind="src" output="test-classes" path="test"/>
-	<classpathentry kind="lib" path="lib/application/antlr4-4.3.jar"/>
-	<classpathentry kind="lib" path="lib/application/tomcat-embed-core-7.0.42.jar"/>
-	<classpathentry kind="lib" path="lib/test/junit-4.11.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/application/tomcat-embed-jasper-7.0.42.jar"/>
-	<classpathentry kind="lib" path="lib/application/tomcat-embed-logging-juli-7.0.42.jar"/>
+	<classpathentry kind="lib" path="lib/server/tomcat-embed-core-7.0.42.jar"/>
+	<classpathentry kind="lib" path="lib/server/tomcat-embed-jasper-7.0.42.jar"/>
+	<classpathentry kind="lib" path="lib/server/tomcat-embed-logging-juli-7.0.42.jar"/>
+	<classpathentry kind="lib" path="lib/application/jodd-3.2.6.jar"/>
+	<classpathentry kind="lib" path="lib/application/json-20140107.jar"/>
+	<classpathentry kind="lib" path="lib/application/antlr4-4.3.jar"/>
+	<classpathentry kind="lib" path="lib/application/antlr4-runtime-4.3.jar"/>
+	<classpathentry kind="lib" path="lib/application/ST4-4.0.8.jar"/>
+	<classpathentry kind="lib" path="lib/application/antlr-runtime-3.5.2.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

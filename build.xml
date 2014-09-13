@@ -16,9 +16,18 @@
 		<fileset dir="${project.dir}/lib/development" includes="*.jar" />
 	</path>
 
+	<path id="server.classpath">
+		<fileset dir="${project.dir}/lib/server" includes="*.jar" />
+	</path>
+
 	<path id="test.classpath">
 		<fileset dir="${project.dir}/lib/test" includes="*.jar" />
 		<pathelement path="${project.dir}/test-classes" />
+	</path>
+
+	<path id="project.classpath">
+		<fileset dir="${project.dir}/lib/application" includes="*.jar" />
+		<fileset dir="${project.dir}/lib/server" includes="*.jar" />
 	</path>
 
 	<taskdef classpathref="development.classpath" resource="net/sf/antcontrib/antlib.xml" />
@@ -29,6 +38,7 @@
 	<target name="clean">
 		<delete dir="${project.dir}/classes" />
 		<delete dir="${project.dir}/lib/application" />
+		<delete dir="${project.dir}/lib/server" />
 		<delete dir="${project.dir}/lib/test" />
 		<delete dir="${project.dir}/test-classes" />
 	</target>
@@ -38,10 +48,10 @@
 	<target name="compile-application" depends="clean">
 		<mkdir dir="${project.dir}/classes" />
 
-		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="application" />
+		<ivy:retrieve pattern="lib/[conf]/[artifact]-[revision].[ext]" conf="application, server" />
 
 		<javac
-			classpathref="application.classpath"
+			classpathref="project.classpath"
 			compiler="${javac.compiler}"
 			debug="${javac.debug}"
 			deprecation="${javac.deprecation}"

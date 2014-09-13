@@ -47,6 +47,7 @@
 		<mkdir dir="${project.dir}/lib/application" />
 		<mkdir dir="${project.dir}/lib/server" />
 		<mkdir dir="${project.dir}/lib/test" />
+		<mkdir dir="${project.dir}/test" />
 		<mkdir dir="${project.dir}/test-classes" />
 
 		<ivy:resolve />

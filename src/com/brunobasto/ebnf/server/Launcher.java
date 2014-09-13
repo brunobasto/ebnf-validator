@@ -14,7 +14,7 @@ public class Launcher {
 		String webappDirLocation = "docroot/";
 
 		Tomcat tomcat = new Tomcat();
-		tomcat.setPort(8080);
+		tomcat.setPort(1234);
 		tomcat.setBaseDir(new File("tomcat").getAbsolutePath());
 
 		String path = new File(webappDirLocation).getAbsolutePath();

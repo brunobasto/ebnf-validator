@@ -23,6 +23,14 @@ public class Launcher {
 		tomcat.setPort(port);
 		tomcat.setBaseDir(new File("tomcat").getAbsolutePath());
 
+		Connector connector = this.current.getConnector();
+		connector.setProperty(
+			"compressableMimeType", "text/html,text/xml, text/css," +
+			"application/json, application/javascript");
+		connector.setProperty("compression", "on");
+		connector.setProperty("compressionMinSize", "1024");
+		connector.setProperty("noCompressionUserAgents", "gozilla, traviata");
+
 		String path = new File(webappDirLocation).getAbsolutePath();
 
 		try {

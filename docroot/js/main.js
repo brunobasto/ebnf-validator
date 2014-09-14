@@ -20,16 +20,31 @@ grammarForm.submit(function(event) {
 		data: serializeForm(grammarForm)
 	})
 	.done(function(result) {
-		$('.notifyjs-container').trigger('click');
+		var filterd = [];
 
 		result.forEach(function(msg) {
 			if (msg.indexOf('error(8)') == -1) {
+				filterd.push(msg.replace(/error\(\d+\)\:\s\:/ig, 'Error at line '));
+			}
+		});
+
+		$('.notifyjs-container').trigger('click');
+
+		if (filterd.length > 0) {
+			filterd.forEach(function(msg) {
 				$.notify(msg, {
 					autoHide: false,
 					position: 'top'
 				});
-			}
-		});
+			});
+		}
+		else {
+			$.notify('Grammar looks fine :)', {
+				autoHide: false,
+				className: 'success',
+				position: 'top'
+			});
+		}
 	});
 
 	event.preventDefault();

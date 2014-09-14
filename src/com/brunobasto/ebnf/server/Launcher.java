@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.ServletException;
 
 import org.apache.catalina.LifecycleException;
+import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.naming.resources.VirtualDirContext;
@@ -23,7 +24,7 @@ public class Launcher {
 		tomcat.setPort(port);
 		tomcat.setBaseDir(new File("tomcat").getAbsolutePath());
 
-		Connector connector = this.current.getConnector();
+		Connector connector = tomcat.getConnector();
 		connector.setProperty(
 			"compressableMimeType", "text/html,text/xml, text/css," +
 			"application/json, application/javascript");

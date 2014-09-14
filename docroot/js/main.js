@@ -12,7 +12,13 @@ var serializeForm = function(form) {
 	return data;
 };
 
+var spinner = new Spinner().spin(document.body);
+
+$(spinner.el).hide();
+
 grammarForm.submit(function(event) {
+	$(spinner.el).show();
+
 	$.ajax({
 		dataType: 'json',
 		type: 'POST',
@@ -45,6 +51,8 @@ grammarForm.submit(function(event) {
 				position: 'top'
 			});
 		}
+
+		$(spinner.el).hide();
 	});
 
 	event.preventDefault();

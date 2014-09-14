@@ -29,7 +29,7 @@ grammarForm.submit(function(event) {
 		var filterd = [];
 
 		result.forEach(function(msg) {
-			if (msg.indexOf('error(8)') == -1) {
+			if (/error\(\d+\)\:\s\:/ig.test(msg) &&  (msg.indexOf('error(8)') == -1)) {
 				filterd.push(msg.replace(/error\(\d+\)\:\s\:/ig, 'Error at line '));
 			}
 		});

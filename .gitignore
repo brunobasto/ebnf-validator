@@ -1,4 +1,5 @@
 .ant_targets
+build.*.properties
 classes/
 lib/application/
 lib/test/

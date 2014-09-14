@@ -6,6 +6,7 @@
 
 	<!-- configuration file -->
 
+	<property file="${project.dir}/build.${user.name}.properties" />
 	<property file="${project.dir}/build.properties" />
 
 	<path id="application.classpath">
@@ -95,9 +96,7 @@
 			maxmemory="512m"
 			newenvironment="false"
 		>
-			<arg value="-o" />
-			<arg value="${project.dir}/_antlr" />
-			<arg value="${project.dir}/${grammar.file}" />
+			<arg value="${server.port}" />
 		</java>
 	</target>
 

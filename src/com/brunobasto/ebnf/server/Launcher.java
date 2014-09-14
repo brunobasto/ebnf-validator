@@ -11,10 +11,16 @@ import org.apache.naming.resources.VirtualDirContext;
 public class Launcher {
 
 	public static void main(String[] args) {
+		int port = 80;
+
+		if (args.length > 0) {
+			port = Integer.valueOf(args[0]);
+		}
+
 		String webappDirLocation = "docroot/";
 
 		Tomcat tomcat = new Tomcat();
-		tomcat.setPort(80);
+		tomcat.setPort(port);
 		tomcat.setBaseDir(new File("tomcat").getAbsolutePath());
 
 		String path = new File(webappDirLocation).getAbsolutePath();

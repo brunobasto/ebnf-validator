@@ -618,6 +618,7 @@ margin: 0 0 20px 0;
 -webkit-border-radius: 50%;
 -moz-border-radius: 50%;
 border-radius: 50%;
+width: 300px
 }
 
 .team-detail h4 {
@@ -680,7 +681,13 @@ border: 0;
 }
 
 section.featured {
-	padding-top: 80px;
+	padding-top: 120px;
+}
+
+section.featured .btn-theme {
+display: block;
+padding: 15px;
+width: 100%;
 }
 
 .team-member {
@@ -708,4 +715,14 @@ background: #35A49C;
 
 .grammar-code {
 min-height: 300px;
+}
+
+body .notifyjs-bootstrap-base {
+padding: 8px;
+background-image: none;
+}
+
+.notifyjs-bootstrap-base span {
+font-weight: normal;
+white-space: pre-line;
 }

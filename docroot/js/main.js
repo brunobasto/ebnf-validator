@@ -19,6 +19,8 @@ $(spinner.el).hide();
 grammarForm.submit(function(event) {
 	$(spinner.el).show();
 
+	$('.notifyjs-container').trigger('click');
+
 	$.ajax({
 		dataType: 'json',
 		type: 'POST',
@@ -33,8 +35,6 @@ grammarForm.submit(function(event) {
 				filterd.push(msg.replace(/error\(\d+\)\:\s\:/ig, 'Error at line '));
 			}
 		});
-
-		$('.notifyjs-container').trigger('click');
 
 		if (filterd.length > 0) {
 			filterd.forEach(function(msg) {

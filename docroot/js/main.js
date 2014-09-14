@@ -21,11 +21,15 @@ grammarForm.submit(function(event) {
 
 	$('.notifyjs-container').trigger('click');
 
+	var data = serializeForm(grammarForm);
+
+	_gaq.push(['_trackEvent', 'Grammar Validation', 'Request', data.grammar]);
+
 	$.ajax({
 		dataType: 'json',
 		type: 'POST',
 		url: '/validate-grammar',
-		data: serializeForm(grammarForm)
+		data: data
 	})
 	.done(function(result) {
 		var filterd = [];
@@ -38,6 +42,8 @@ grammarForm.submit(function(event) {
 
 		if (filterd.length > 0) {
 			filterd.forEach(function(msg) {
+				_gaq.push(['_trackEvent', 'Grammar Validation', 'Error', msg]);
+
 				$.notify(msg, {
 					autoHide: false,
 					position: 'top'
@@ -45,6 +51,8 @@ grammarForm.submit(function(event) {
 			});
 		}
 		else {
+			_gaq.push(['_trackEvent', 'Grammar Validation', 'Success']);
+
 			$.notify('Grammar looks fine :)', {
 				autoHide: false,
 				className: 'success',

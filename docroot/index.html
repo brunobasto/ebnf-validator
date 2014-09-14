@@ -30,7 +30,10 @@
 							</p>
 							<form action="/validate-grammar" id="grammarForm" method="post" role="form">
 								<div class="form-group">
-									<textarea class="form-control grammar-code" name="grammar"></textarea>
+									<textarea class="form-control grammar-code" name="grammar">grammar MyGrammar;
+
+ruleA:'a';
+ruleB:ruleA 'b';</textarea>
 								</div>
 								<button type="submit" class="btn btn-theme pull-right">VALIDATE</button>
 							</form>
